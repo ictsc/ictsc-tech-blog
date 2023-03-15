@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-title::before {
+    @apply absolute;
+    @apply inset-0;
+
+    content: "";
+}
+
+.card-tag::before {
+    @apply absolute;
+    @apply inset-0;
+
+    content: "";
+}

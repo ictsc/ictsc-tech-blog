@@ -2,13 +2,28 @@
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
+		extend: {
+			container: {
+				screens: {
+					sm: '600px',
+					md: '728px',
+					lg: '984px',
+					xl: '1240px',
+				},
+			}
+		},
+		screens: {
+			xl: { max: "1279px" },
+			lg: { max: "1023px" },
+			md: { max: "767px" },
+			sm: { max: "639px" },
+		},
 	},
 	daisyui: {
 		themes: [
 			{
 				ictsc: {
-					primary: "#f43f5e",
+					primary: "#E6003A",
 					// "primary-focus": "#f43f5e",
 					"primary-content": "#FFFFFF",
 					accent: "#37CDBE",

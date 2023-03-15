@@ -1,27 +1,53 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<div class="navbar bg-base-100 text-white border-b">
-		<div class="container mx-auto px-2">
-			<a class="normal-case text-xl bg-primary p-2">{SITE_TITLE}</a>
-		</div>
-	</div>
+	<Header />
+</BaseLayout>
 
-	<div class="container mx-auto px-2">
-		<h1 class="text-2xl font-bold py-8">記事一覧</h1>
-		<div class="card card-bordered bg-base-100 text-base-content ">
+<div class="container mx-auto -mt-4 px-2">
+	<h1 class="hidden">{SITE_TITLE} ホーム</h1>
+	<div class="grid md:grid-cols-1 grid-cols-2 gap-4">
+		<div class="card card-bordered bg-base-100 text-base-content">
 			<div class="card-body">
-				<h2 class="card-title">ICTSC2022 問題解説まとめ</h2>
-				<p class="py-2">2020.03.08</p>
-				<div>
-					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
-					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
-					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
+				<h2 class="card-title">
+					<a
+						class="card-title"
+						href="2020/03/08/ICTSC2022問題解説まとめ/"
+						>ICTSC2022 問題解説まとめ</a
+					>
+				</h2>
+				<p class="py-2 text-gray-400">2020.03.08</p>
+				<div class="flex flex-wrap gap-2">
+					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
+						<span
+							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
+							>ICTSC2022問題解説まとめ</span
+						>
+					</a>
+					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
+						<span
+							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
+							>アプリケーション関連</span
+						>
+					</a>
+					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
+						<span
+							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
+							>サーバ関連</span
+						>
+					</a>
+					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
+						<span
+							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
+							>ネットワーク関連</span
+						>
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</BaseLayout>
+</div>
