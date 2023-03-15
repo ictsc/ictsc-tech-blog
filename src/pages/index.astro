@@ -1,15 +1,27 @@
 ---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import BaseLayout from "../layout/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<div class="navbar bg-base-100 text-white border-b">
+		<div class="container mx-auto px-2">
+			<a class="normal-case text-xl bg-primary p-2">{SITE_TITLE}</a>
+		</div>
+	</div>
+
+	<div class="container mx-auto px-2">
+		<h1 class="text-2xl font-bold py-8">記事一覧</h1>
+		<div class="card card-bordered bg-base-100 text-base-content ">
+			<div class="card-body">
+				<h2 class="card-title">ICTSC2022 問題解説まとめ</h2>
+				<p class="py-2">2020.03.08</p>
+				<div>
+					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
+					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
+					<span class="badge badge-outline badge-lg rounded-md p-4">Badge</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
