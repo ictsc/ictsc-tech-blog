@@ -1,0 +1,64 @@
+---
+import "zenn-content-css";
+
+import { CollectionEntry, getCollection } from "astro:content";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import BaseLayout from "../../layout/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import CategoryBadge from "../../components/CategoryBadge.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+type Props = CollectionEntry<"blog">["data"];
+
+const post = Astro.props;
+const { title, tags } = post.data;
+
+const { Content } = await post.render();
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<body>
+		<Header />
+		<main>
+			<div class="bg-gray-200">
+				<div class="container mx-auto px-2 py-2">
+					<div class="text-sm breadcrumbs">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a>Documents</a></li>
+							<li>Add Document</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container mx-auto px-2">
+				<h1 class="text-4xl font-bold pt-16 pb-6">{title}</h1>
+				<div class="flex flex-row justify-items-center">
+					<p class="pt-[0.4px] pr-6 text-gray-400">2020.03.08</p>
+					<div class="flex flex-wrap gap-2 pb-16">
+						{
+							tags.map((tag: any) => (
+								<CategoryBadge
+									name={tag}
+									href={`/category/${tag}/`}
+								/>
+							))
+						}
+					</div>
+				</div>
+				<div class="znc border px-8 pt-12 pb-8 rounded-md shadow-sm">
+					<Content />
+				</div>
+			</div>
+		</main>
+	</body>
+</BaseLayout>

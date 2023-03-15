@@ -1,0 +1,10 @@
+---
+const { name, href } = Astro.props;
+---
+
+<a class="z-10" href={href}>
+    <span
+        class="transition duration-200 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
+        >{name}</span
+    >
+</a>

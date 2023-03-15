@@ -2,52 +2,34 @@
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import CategoryBadge from "../components/CategoryBadge.astro";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<Header />
-</BaseLayout>
-
-<div class="container mx-auto -mt-4 px-2">
-	<h1 class="hidden">{SITE_TITLE} ホーム</h1>
-	<div class="grid md:grid-cols-1 grid-cols-2 gap-4">
-		<div class="card card-bordered bg-base-100 text-base-content">
-			<div class="card-body">
-				<h2 class="card-title">
-					<a
-						class="card-title"
-						href="2020/03/08/ICTSC2022問題解説まとめ/"
-						>ICTSC2022 問題解説まとめ</a
-					>
-				</h2>
-				<p class="py-2 text-gray-400">2020.03.08</p>
-				<div class="flex flex-wrap gap-2">
-					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
-						<span
-							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
-							>ICTSC2022問題解説まとめ</span
-						>
-					</a>
-					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
-						<span
-							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
-							>アプリケーション関連</span
-						>
-					</a>
-					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
-						<span
-							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
-							>サーバ関連</span
-						>
-					</a>
-					<a class="z-10" href="/category/ICTSC2022問題解説まとめ/">
-						<span
-							class="transition duration-75 hover:bg-blue-100 badge badge-outline badge-sm rounded-md p-3 border-[0.5px]"
-							>ネットワーク関連</span
-						>
-					</a>
+	<body>
+		<Header />
+		<div class="container mx-auto -mt-4 px-2">
+			<h1 class="hidden">{SITE_TITLE} ホーム</h1>
+			<div class="grid md:grid-cols-1 grid-cols-2 gap-4">
+				<div class="card card-bordered bg-base-100 text-base-content">
+					<div class="card-body">
+						<h2 class="card-title">
+							<a
+								class="card-title"
+								href="2020/03/08/ICTSC2022問題解説まとめ/"
+								>ICTSC2022 問題解説まとめ</a
+							>
+						</h2>
+						<p class="py-2 text-gray-400">2020.03.08</p>
+						<div class="flex flex-wrap gap-2">
+							<CategoryBadge name="ICTSC2022問題解説まとめ" />
+							<CategoryBadge name="アプリケーション関連" />
+							<CategoryBadge name="サーバ関連" />
+							<CategoryBadge name="ネットワーク関連" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</body>
+</BaseLayout>
