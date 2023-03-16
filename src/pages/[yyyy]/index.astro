@@ -31,7 +31,7 @@ const posts = Astro.props.posts;
 
 <CollectionLayout meta={"年別"} title={`${yyyy}年`}>
     <div class="text-sm breadcrumbs" slot="breadCrumbs">
-        <ul>
+        <ul class="py-2">
             <li><a href="/">Home</a></li>
             <li><a href={`/${yyyy}`}>{yyyy}</a></li>
         </ul>

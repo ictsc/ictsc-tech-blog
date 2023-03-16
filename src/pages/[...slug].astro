@@ -34,9 +34,9 @@ const { Content } = await post.render();
     <main class="flex flex-col min-h-screen">
       <article>
         <div class="bg-gray-200">
-          <div class="container mx-auto px-2 py-2">
+          <div class="container mx-auto px-2">
             <div class="text-sm breadcrumbs">
-              <ul>
+              <ul class="py-2">
                 <li><a href="/">Home</a></li>
                 {
                   slug.split("/").map((path, index) => (
@@ -57,7 +57,7 @@ const { Content } = await post.render();
           </div>
         </div>
         <div class="container mx-auto px-2 flex-grow">
-          <h1 class="text-3xl font-bold pt-16 pb-6">{title}</h1>
+          <h1 class="text-3xl md:text-xl font-bold pt-16 pb-6">{title}</h1>
           <div class="flex flex-row justify-items-center">
             <p class="pt-[0.4px] pr-6 text-gray-400">
               <FormatDate date={pubDate} />
@@ -70,7 +70,7 @@ const { Content } = await post.render();
               }
             </div>
           </div>
-          <div class="znc border px-8 pt-12 pb-8 rounded-md shadow-sm">
+          <div class="znc border md:border-t px-8 pt-12 pb-8 rounded-md shadow-sm">
             <Content />
           </div>
         </div>
