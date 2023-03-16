@@ -1,0 +1,21 @@
+---
+import CategoryBadge from "./CategoryBadge.astro";
+
+const { href, title, tags } = Astro.props;
+---
+
+<div class="card card-bordered bg-base-100 text-base-content">
+    <div class="card-body">
+        <h2 class="card-title">
+            <a class="card-title" href={href}
+                >{title}</a
+            >
+        </h2>
+        <p class="py-2 text-gray-400">2020.03.08</p>
+        <div class="flex flex-wrap gap-2">
+            {tags.map((tag: string) => (
+                <CategoryBadge name={tag} href={`/category/${tag}/`} />
+            ))}
+        </div>
+    </div>
+</div>
