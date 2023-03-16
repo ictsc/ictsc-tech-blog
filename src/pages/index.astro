@@ -2,6 +2,7 @@
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 
@@ -11,19 +12,22 @@ const posts = await getCollection("blog");
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<body>
 		<Header />
-		<div class="container mx-auto -mt-4 px-2">
-			<h1 class="hidden">{SITE_TITLE} ホーム</h1>
-			<div class="grid md:grid-cols-1 grid-cols-2 gap-4">
-				{
-					posts.map((post) => (
-						<ArticleCard
-							href={`/${post.slug}/`}
-							title={post.data.title}
-							tags={post.data.tags}
-						/>
-					))
-				}
+		<main class="flex flex-col min-h-screen">
+			<div class="container mx-auto -mt-4 px-2">
+				<h1 class="hidden">{SITE_TITLE} ホーム</h1>
+				<div class="grid md:grid-cols-1 grid-cols-2 gap-4 flex-grow">
+					{
+						posts.map((post) => (
+							<ArticleCard
+								href={`/${post.slug}/`}
+								title={post.data.title}
+								tags={post.data.tags}
+							/>
+						))
+					}
+				</div>
 			</div>
-		</div>
+		</main>
+		<Footer />
 	</body>
 </BaseLayout>

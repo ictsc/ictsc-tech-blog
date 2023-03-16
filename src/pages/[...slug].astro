@@ -6,6 +6,7 @@ import { CollectionEntry, getCollection } from "astro:content";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import CategoryBadge from "../components/CategoryBadge.astro";
 import FormatDate from "../components/FormatDate.astro";
 
@@ -30,7 +31,7 @@ const { Content } = await post.render();
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <body>
     <Header />
-    <main>
+    <main class="flex flex-col min-h-screen">
       <article>
         <div class="bg-gray-200">
           <div class="container mx-auto px-2 py-2">
@@ -55,7 +56,7 @@ const { Content } = await post.render();
             </div>
           </div>
         </div>
-        <div class="container mx-auto px-2">
+        <div class="container mx-auto px-2 flex-grow">
           <h1 class="text-3xl font-bold pt-16 pb-6">{title}</h1>
           <div class="flex flex-row justify-items-center">
             <p class="pt-[0.4px] pr-6 text-gray-400">
@@ -75,5 +76,6 @@ const { Content } = await post.render();
         </div>
       </article>
     </main>
+    <Footer />
   </body>
 </BaseLayout>
