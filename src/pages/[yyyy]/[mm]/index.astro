@@ -12,8 +12,6 @@ export async function getStaticPaths() {
         ...new Set(allPosts.map((post) => post.slug.split("/").slice(0, 2).join("/"))),
     ];
 
-    console.log(uniqueMonth)
-
     return uniqueMonth.map((month) => {
         const filteredPosts = allPosts.filter((post) =>
             post.slug.startsWith(month)

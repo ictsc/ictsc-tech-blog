@@ -12,8 +12,6 @@ export async function getStaticPaths() {
         ...new Set(allPosts.map((post) => post.slug.split("/").slice(0, 3).join("/"))),
     ];
 
-    console.log(uniqueDay)
-
     return uniqueDay.map((day) => {
         const filteredPosts = allPosts.filter((post) =>
             post.slug.startsWith(day)
