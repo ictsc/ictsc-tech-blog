@@ -2,8 +2,10 @@
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import CategoryBadge from "../components/CategoryBadge.astro";
 import ArticleCard from "../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -12,17 +14,15 @@ import ArticleCard from "../components/ArticleCard.astro";
 		<div class="container mx-auto -mt-4 px-2">
 			<h1 class="hidden">{SITE_TITLE} ホーム</h1>
 			<div class="grid md:grid-cols-1 grid-cols-2 gap-4">
-				<ArticleCard
-					href="/2023/03/03/ICTSC2022問題解説まとめ/"
-					title="ICTSC2022 問題解説まとめ"
-					tags={[
-						"ICTSC2022",
-						"問題解説まとめ",
-						"アプリケーション関連",
-						"サーバ関連",
-						"ネットワーク関連",
-					]}
-				/>
+				{
+					posts.map((post) => (
+						<ArticleCard
+							href={`/${post.slug}/`}
+							title={post.data.title}
+							tags={post.data.tags}
+						/>
+					))
+				}
 			</div>
 		</div>
 	</body>
