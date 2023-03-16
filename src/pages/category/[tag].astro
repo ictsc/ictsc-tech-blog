@@ -1,9 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-import BaseLayout from "../../layout/BaseLayout.astro";
-import Header from "../../components/Header.astro";
+import CollectionLayout from "../../layout/CollectionLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 
 export async function getStaticPaths() {
@@ -33,42 +29,21 @@ const filteredPosts = posts.filter((post: any) =>
 );
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <body>
-        <Header />
-        <main>
-            <div class="bg-gray-200">
-                <div class="container mx-auto px-2 py-2">
-                    <div class="text-sm breadcrumbs">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/category">Category</a></li>
-                            <li><a href={`/category/${tag}/`}>{tag}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="container mx-auto px-2">
-                <!-- <h1 class="text-4xl font-bold pt-16 pb-6">{title}</h1> -->
-                <div class="flex flex-row justify-items-center">
-                    <p class="pt-[0.4px] pr-6 text-gray-400">
-                        <!-- <FormatDate date={pubDate} /> -->
-                    </p>
-                </div>
-                <p class="pt-16 text-gray-400">カテゴリ</p>
-                <h1 class="text-3xl font-bold pb-6">{tag}</h1>
-                <div class="grid md:grid-cols-1 grid-cols-2 gap-4">
-                    {
-                        filteredPosts.map((post: any) => (
-                            <ArticleCard
-                                href={`/${post.frontmatter.slug}/`}
-                                title={post.frontmatter.title}
-                                tags={post.frontmatter.tags}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
-        </main>
-    </body>
-</BaseLayout>
+<CollectionLayout meta="カテゴリ" title={tag}>
+    <div class="text-sm breadcrumbs" slot="breadCrumbs">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/category">Category</a></li>
+            <li><a href={`/category/${tag}/`}>{tag}</a></li>
+        </ul>
+    </div>
+    {
+        filteredPosts.map((post: any) => (
+            <ArticleCard
+                href={`/${post.frontmatter.slug}/`}
+                title={post.frontmatter.title}
+                tags={post.frontmatter.tags}
+            />
+        ))
+    }
+</CollectionLayout>
