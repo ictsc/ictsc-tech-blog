@@ -6,21 +6,21 @@ import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<body>
-		<Header />
-		<main class="flex flex-col min-h-screen">
-			<div class="container mx-auto px-2">
-				<div
-					class="flex-grow absolute inset-0 flex items-center justify-center"
-				>
-					<div class="flex flex-col items-center">
-						<p class="text-6xl font-bold">404</p>
-						<p class="text-xl">Page Not Found!</p>
-						<a href="/" class="btn btn-primary mt-4">Back to Top</a>
-					</div>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main class="flex flex-col min-h-screen">
+      <div class="container mx-auto px-2">
+        <div
+          class="flex-grow absolute inset-0 flex items-center justify-center"
+        >
+          <div class="flex flex-col items-center">
+            <p class="text-6xl font-bold">404</p>
+            <p class="text-xl">Page Not Found!</p>
+            <a href="/" class="btn btn-primary mt-4">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </BaseLayout>

@@ -5,24 +5,22 @@ import ArticleCard from "../../components/ArticleCard.astro";
 import CollectionLayout from "../../layout/CollectionLayout.astro";
 
 export async function getStaticPaths() {
-    const allPosts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
 
-    // slug が先頭 yyyy を抽出, 重複なし
-    // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000, 2001]
-    const uniqueYears = [
-        ...new Set(allPosts.map((post) => post.slug.split("/")[0])),
-    ];
+  // slug が先頭 yyyy を抽出, 重複なし
+  // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000, 2001]
+  const uniqueYears = [
+    ...new Set(allPosts.map((post) => post.slug.split("/")[0])),
+  ];
 
-    return uniqueYears.map((year) => {
-        const filteredPosts = allPosts.filter((post) =>
-            post.slug.startsWith(year)
-        );
+  return uniqueYears.map((year) => {
+    const filteredPosts = allPosts.filter((post) => post.slug.startsWith(year));
 
-        return {
-            params: { yyyy: year },
-            props: { posts: filteredPosts },
-        };
-    });
+    return {
+      params: { yyyy: year },
+      props: { posts: filteredPosts },
+    };
+  });
 }
 
 const yyyy = Astro.params.yyyy;
@@ -30,19 +28,19 @@ const posts = Astro.props.posts;
 ---
 
 <CollectionLayout meta={"年別"} title={`${yyyy}年`}>
-    <div class="text-sm breadcrumbs" slot="breadCrumbs">
-        <ul class="py-2">
-            <li><a href="/">Home</a></li>
-            <li><a href={`/${yyyy}`}>{yyyy}</a></li>
-        </ul>
-    </div>
-    {
-        posts.map((post: any) => (
-            <ArticleCard
-                href={`/${post.slug}/`}
-                title={post.data.title}
-                tags={post.data.tags}
-            />
-        ))
-    }
+  <div class="text-sm breadcrumbs" slot="breadCrumbs">
+    <ul class="py-2">
+      <li><a href="/">Home</a></li>
+      <li><a href={`/${yyyy}`}>{yyyy}</a></li>
+    </ul>
+  </div>
+  {
+    posts.map((post: any) => (
+      <ArticleCard
+        href={`/${post.slug}/`}
+        title={post.data.title}
+        tags={post.data.tags}
+      />
+    ))
+  }
 </CollectionLayout>
