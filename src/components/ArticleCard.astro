@@ -1,7 +1,8 @@
 ---
+import FormatDate from "./FormatDate.astro";
 import CategoryBadge from "./CategoryBadge.astro";
 
-const { href, title, tags } = Astro.props;
+const { href, title, tags, date } = Astro.props;
 ---
 
 <div class="card card-bordered bg-base-100 text-base-content">
@@ -11,7 +12,7 @@ const { href, title, tags } = Astro.props;
                 >{title}</a
             >
         </h2>
-        <p class="py-2 text-gray-400">2020.03.08</p>
+        <p class="py-2 text-gray-400"><FormatDate date={date} /></p>
         <div class="flex flex-wrap gap-2">
             {tags.map((tag: string) => (
                 <CategoryBadge name={tag} href={`/category/${tag}/`} />

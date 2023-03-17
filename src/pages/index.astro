@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog")
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -22,6 +22,7 @@ const posts = await getCollection("blog");
 								href={`/${post.slug}/`}
 								title={post.data.title}
 								tags={post.data.tags}
+								date={post.data.pubDate}
 							/>
 						))
 					}
