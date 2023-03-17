@@ -1,5 +1,5 @@
 ---
-title: 'AstroICTSC'
+title: 'Astro ICTSC'
 description: 'Astro ICTSC'
 tags: ["Other"]
 pubDate: 2023-03-17
