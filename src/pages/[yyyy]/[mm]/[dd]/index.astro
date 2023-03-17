@@ -5,7 +5,11 @@ import ArticleCard from "../../../../components/ArticleCard.astro";
 import CollectionLayout from "../../../../layout/CollectionLayout.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
+  const allPosts = (await getCollection("blog"))
+    .filter((post: any) => !post.data.draft)
+    .sort(
+      (a: any, b: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+    );
 
   // slug が先頭 yyyy/mm/dd を抽出, 重複なし
   // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000/01/01, 2001/01/01, 2001/02/02]
@@ -50,6 +54,7 @@ const posts = Astro.props.posts;
         href={`/${post.slug}/`}
         title={post.data.title}
         tags={post.data.tags}
+        date={post.data.pubDate}
       />
     ))
   }

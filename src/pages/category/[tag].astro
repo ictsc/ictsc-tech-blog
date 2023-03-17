@@ -1,12 +1,14 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 import CollectionLayout from "../../layout/CollectionLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../../content/blog/**/*.md");
+  const allPosts = await getCollection("blog");
 
   const uniqueTags = [
-    ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];
 
   return uniqueTags.map((tag: string) => ({
@@ -18,9 +20,12 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-const filteredPosts = posts.filter((post: any) =>
-  post.frontmatter.tags.includes(tag)
-);
+const filteredPosts = posts
+  .filter((post: any) => post.data.tags.includes(tag))
+  .filter((post: any) => !post.data.draft)
+  .sort(
+    (a: any, b: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  );
 ---
 
 <CollectionLayout meta="カテゴリ" title={tag}>
@@ -34,9 +39,10 @@ const filteredPosts = posts.filter((post: any) =>
   {
     filteredPosts.map((post: any) => (
       <ArticleCard
-        href={`/${post.frontmatter.slug}/`}
-        title={post.frontmatter.title}
-        tags={post.frontmatter.tags}
+        href={`/${post.data.slug}/`}
+        title={post.data.title}
+        tags={post.data.tags}
+        date={post.data.pubDate}
       />
     ))
   }
