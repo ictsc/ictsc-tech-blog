@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const allPosts = (await getCollection("blog"))
     .filter((post: any) => !post.data.draft)
     .sort(
-      (a: any, b: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+      (a: any, b: any) => a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
     );
 
   // slug が先頭 yyyy/mm/dd を抽出, 重複なし

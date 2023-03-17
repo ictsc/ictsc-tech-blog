@@ -24,7 +24,7 @@ const filteredPosts = posts
   .filter((post: any) => post.data.tags.includes(tag))
   .filter((post: any) => !post.data.draft)
   .sort(
-    (a: any, b: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+    (a: any, b: any) => a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
   );
 ---
 
