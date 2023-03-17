@@ -6,17 +6,17 @@ const { href, title, tags, date } = Astro.props;
 ---
 
 <div class="card card-bordered bg-base-100 text-base-content">
-    <div class="card-body">
-        <h2 class="card-title">
-            <a class="card-title" href={href}
-                >{title}</a
-            >
-        </h2>
-        <p class="py-2 text-gray-400"><FormatDate date={date} /></p>
-        <div class="flex flex-wrap gap-2">
-            {tags.map((tag: string) => (
-                <CategoryBadge name={tag} href={`/category/${tag}/`} />
-            ))}
-        </div>
+  <div class="card-body">
+    <h2 class="card-title">
+      <a class="card-title" href={href}>{title}</a>
+    </h2>
+    <p class="py-2 text-gray-400"><FormatDate date={date} /></p>
+    <div class="flex flex-wrap gap-2">
+      {
+        tags.map((tag: string) => (
+          <CategoryBadge name={tag} href={`/category/${tag}/`} />
+        ))
+      }
     </div>
+  </div>
 </div>
