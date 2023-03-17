@@ -22,13 +22,13 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { title, tags, pubDate } = post.data;
+const { title, description, tags, pubDate } = post.data;
 const slug = post.slug;
 
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description}>
   <body>
     <Header />
     <main class="flex flex-col min-h-screen">
@@ -59,7 +59,7 @@ const { Content } = await post.render();
         <div class="container mx-auto px-2 flex-grow">
           <h1 class="text-3xl md:text-xl font-bold pt-16 pb-6">{title}</h1>
           <div class="flex flex-row justify-items-center">
-            <p class="pt-[0.4px] pr-6 text-gray-400">
+            <p class="pt-[0.4px] pr-6 text-gray-500">
               <FormatDate date={pubDate} />
             </p>
             <div class="flex flex-wrap gap-2 pb-16">

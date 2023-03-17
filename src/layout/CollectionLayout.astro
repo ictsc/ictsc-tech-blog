@@ -8,7 +8,7 @@ import Footer from "../components/Footer.astro";
 const { meta, title } = Astro.props;
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
   <body>
     <Header />
     <main class="flex flex-col min-h-screen">
@@ -18,7 +18,7 @@ const { meta, title } = Astro.props;
         </div>
       </div>
       <div class="container mx-auto px-2 flex-grow">
-        <p class="pt-16 text-gray-400">{meta}</p>
+        <p class="pt-16 text-gray-500">{meta}</p>
         <h1 class="text-3xl font-bold pb-6">{title}</h1>
         <div class="grid md:grid-cols-1 grid-cols-2 gap-4">
           <slot />

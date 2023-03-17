@@ -10,7 +10,7 @@ const { href, title, tags, date } = Astro.props;
     <h2 class="card-title">
       <a class="card-title" href={href}>{title}</a>
     </h2>
-    <div class="py-2 text-gray-400"><FormatDate date={date} /></div>
+    <div class="py-2 text-gray-500"><FormatDate date={date} /></div>
     <div class="flex flex-wrap gap-2">
       {
         tags.map((tag: string) => (
