@@ -23,9 +23,7 @@ const { posts } = Astro.props;
 const filteredPosts = posts
   .filter((post: any) => post.data.tags.includes(tag))
   .filter((post: any) => !post.data.draft)
-  .sort(
-    (a: any, b: any) => a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
-  );
+  .sort((a: any, b: any) => (a.data.pubDate < b.data.pubDate ? 1 : -1));
 ---
 
 <CollectionLayout meta="カテゴリ" title={tag}>
@@ -39,7 +37,7 @@ const filteredPosts = posts
   {
     filteredPosts.map((post: any) => (
       <ArticleCard
-        href={`/${post.data.slug}/`}
+        href={`/${post.slug}/`}
         title={post.data.title}
         tags={post.data.tags}
         date={post.data.pubDate}

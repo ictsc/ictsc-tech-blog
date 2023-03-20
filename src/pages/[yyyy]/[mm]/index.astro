@@ -7,9 +7,7 @@ import CollectionLayout from "../../../layout/CollectionLayout.astro";
 export async function getStaticPaths() {
   const allPosts = (await getCollection("blog"))
     .filter((post: any) => !post.data.draft)
-    .sort(
-      (a: any, b: any) => a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
-    );
+    .sort((a, b) => a.data.pubDate < b.data.pubDate ? 1 : -1);
 
   // slug が先頭 yyyy/mm を抽出, 重複なし
   // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000/01, 2001/01, 2001/02]

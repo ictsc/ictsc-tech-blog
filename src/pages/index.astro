@@ -9,7 +9,7 @@ import { getCollection } from "astro:content";
 // draft は除く, pubDate 順番
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => a.data.pubDate.valueOf() + b.data.pubDate.valueOf());
+  .sort((a, b) => a.data.pubDate < b.data.pubDate ? 1 : -1);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
