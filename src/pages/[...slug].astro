@@ -2,7 +2,7 @@
 import "zenn-content-css";
 
 import { CollectionEntry, getCollection } from "astro:content";
-import markdownToHtml from "zenn-markdown-html";
+import lib from "zenn-markdown-html";
 
 import { SITE_TITLE } from "../consts";
 import BaseLayout from "../layout/BaseLayout.astro";
@@ -10,6 +10,11 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CategoryBadge from "../components/CategoryBadge.astro";
 import FormatDate from "../components/FormatDate.astro";
+
+// vs-code でどうしてもエラーになってしまうので、ts-ignore で回避
+// これをしないとビルドに失敗する
+// @ts-ignore
+const markdownToHtml = lib.default ? lib.default : lib;
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
