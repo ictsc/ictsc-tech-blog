@@ -1,0 +1,27 @@
+{
+  "name": "astro-ictsc",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^0.18.1",
+    "@astrojs/rss": "^2.3.0",
+    "@astrojs/sitemap": "^1.2.1",
+    "@astrojs/tailwind": "^3.1.0",
+    "astro": "^2.1.2",
+    "daisyui": "^2.51.3",
+    "tailwindcss": "^3.2.7",
+    "zenn-content-css": "^0.1.141",
+    "zenn-markdown-html": "^0.1.141"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.4",
+    "prettier-plugin-astro": "^0.8.0"
+  }
+}

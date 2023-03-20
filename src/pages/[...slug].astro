@@ -1,0 +1,88 @@
+---
+import "zenn-content-css";
+
+import { CollectionEntry, getCollection } from "astro:content";
+import lib from "zenn-markdown-html";
+
+import { SITE_TITLE } from "../consts";
+import BaseLayout from "../layout/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CategoryBadge from "../components/CategoryBadge.astro";
+import FormatDate from "../components/FormatDate.astro";
+
+// vs-code でどうしてもエラーになってしまうので、ts-ignore で回避
+// これをしないとビルドに失敗する
+// @ts-ignore
+const markdownToHtml = lib.default ? lib.default : lib;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { title, description, tags, pubDate, renderer } = post.data;
+const slug = post.slug;
+
+const body = renderer == "html" ? post.body : markdownToHtml(post.body);
+---
+
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description}>
+  <body>
+    <Header />
+    <main class="flex flex-col min-h-screen">
+      <article>
+        <div class="bg-gray-200">
+          <div class="container mx-auto px-2">
+            <div class="text-sm breadcrumbs">
+              <ul class="py-2">
+                <li><a href="/">Home</a></li>
+                {
+                  slug.split("/").map((path, index) => (
+                    <li>
+                      <a
+                        href={`/${slug
+                          .split("/")
+                          .slice(0, index + 1)
+                          .join("/")}/`}
+                      >
+                        {path}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container mx-auto px-2 flex-grow">
+          <h1 class="text-3xl md:text-xl font-bold pt-16 pb-6">{title}</h1>
+          <div class="flex flex-row justify-items-center">
+            <p class="pt-[0.4px] pr-6 text-gray-500">
+              <FormatDate date={pubDate} />
+            </p>
+            <div class="flex flex-wrap gap-2 pb-16">
+              {
+                tags.map((tag: any) => (
+                  <CategoryBadge name={tag} href={`/category/${tag}/`} />
+                ))
+              }
+            </div>
+          </div>
+          <div
+            class="znc border md:border-t px-8 pt-12 pb-8 rounded-md shadow-sm"
+            set:html={body}
+          />
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</BaseLayout>

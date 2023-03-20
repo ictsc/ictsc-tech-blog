@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+
+import ArticleCard from "../../../components/ArticleCard.astro";
+import CollectionLayout from "../../../layout/CollectionLayout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = (await getCollection("blog"))
+    .filter((post: any) => !post.data.draft)
+    .sort((a, b) => a.data.pubDate < b.data.pubDate ? 1 : -1);
+
+  // slug が先頭 yyyy/mm を抽出, 重複なし
+  // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000/01, 2001/01, 2001/02]
+  const uniqueMonth = [
+    ...new Set(
+      allPosts.map((post) => post.slug.split("/").slice(0, 2).join("/"))
+    ),
+  ];
+
+  return uniqueMonth.map((month) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.slug.startsWith(month)
+    );
+
+    return {
+      params: { yyyy: month.split("/")[0], mm: month.split("/")[1] },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const yyyy = Astro.params.yyyy;
+const mm = Astro.params.mm;
+const posts = Astro.props.posts;
+---
+
+<CollectionLayout meta={"年月別"} title={`${yyyy}年${mm}月`}>
+  <div class="text-sm breadcrumbs" slot="breadCrumbs">
+    <ul class="py-2">
+      <li><a href="/">Home</a></li>
+      <li><a href={`/${yyyy}`}>{yyyy}</a></li>
+      <li><a href={`/${yyyy}/${mm}`}>{mm}</a></li>
+    </ul>
+  </div>
+  {
+    posts.map((post: any) => (
+      <ArticleCard
+        href={`/${post.slug}/`}
+        title={post.data.title}
+        tags={post.data.tags}
+        date={post.data.pubDate}
+      />
+    ))
+  }
+</CollectionLayout>
