@@ -9,7 +9,15 @@ import { getCollection } from "astro:content";
 // draft は除く, pubDate 順番
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => a.data.pubDate < b.data.pubDate ? 1 : -1);
+  .sort((a, b) => {
+    if (a.data.sticky && !b.data.sticky) {
+      return -1;
+    } else if (!a.data.sticky && b.data.sticky) {
+      return 1;
+    } else {
+      return a.data.pubDate < b.data.pubDate ? 1 : -1;
+    }
+  });
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -26,6 +34,7 @@ const posts = (await getCollection("blog"))
                 title={post.data.title}
                 tags={post.data.tags}
                 date={post.data.pubDate}
+                sticky={post.data.sticky}
               />
             ))
           }

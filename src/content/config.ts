@@ -8,6 +8,7 @@ const blog = defineCollection({
       pubDate: z.date(),
       draft: z.boolean(),
       renderer: z.enum(["html", "md"]).optional().default("md"),
+      sticky: z.boolean().optional().default(false),
     })
 });
 
