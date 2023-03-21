@@ -10,7 +10,7 @@ const { href, title, tags, date, sticky = false, wpId } = Astro.props;
     sticky && "col-span-2"
   }`}
   data-wp-id={wpId}
-  data-wp-href={href}
+  data-wp-href={wpId == null ? null : href}
 >
   <div class="card-body">
     <h2 class="card-title">
