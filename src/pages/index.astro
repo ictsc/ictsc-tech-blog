@@ -26,7 +26,10 @@ const posts = (await getCollection("blog"))
     <main class="flex flex-col min-h-screen">
       <div class="container mx-auto -mt-4 px-2">
         <h1 class="hidden">{SITE_TITLE} ホーム</h1>
-        <div class="grid md:grid-cols-1 grid-cols-2 gap-4 flex-grow">
+        <div
+          id="card-list"
+          class="grid md:grid-cols-1 grid-cols-2 gap-4 flex-grow"
+        >
           {
             posts.map((post) => (
               <ArticleCard
@@ -35,6 +38,13 @@ const posts = (await getCollection("blog"))
                 tags={post.data.tags}
                 date={post.data.pubDate}
                 sticky={post.data.sticky}
+                wpId={(() => {
+                  // wordpress/ で始まるか始まるなら id の部分を切り出す
+                  // 例: wordpress/2023031323173574.md なら下四桁の 3574 が id
+                  if (post.id.startsWith("wordpress/")) {
+                    return post.id.split("/")[1].slice(-7, -3);
+                  }
+                })()}
               />
             ))
           }
@@ -44,3 +54,48 @@ const posts = (await getCollection("blog"))
     <Footer />
   </body>
 </BaseLayout>
+
+<script>
+  // wordpress からのリダイレクト用
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+
+  // クエリから id を取得
+  const pageId = params["p"] as unknown as number | null;
+
+  function redirectToPage(pageId: number | null) {
+    if (pageId == null) {
+      return;
+    }
+
+    const wpIds = document
+      .getElementById("card-list")
+      ?.querySelectorAll("[data-wp-id]");
+
+    const hrefs = document
+      .getElementById("card-list")
+      ?.querySelectorAll("[data-wp-href]");
+
+    const length = wpIds?.length ?? 0;
+    for (let i = 0; i < length; i++) {
+      const id = wpIds?.[i].getAttribute("data-wp-id") as Number | null;
+
+      if (id == null) {
+        continue;
+      }
+
+      if (pageId == id) {
+        window.location.href = hrefs?.[i].getAttribute(
+          "data-wp-href"
+        ) as string;
+
+        return;
+      }
+    }
+
+    window.location.href = "/";
+    return;
+  }
+
+  redirectToPage(pageId);
+</script>
