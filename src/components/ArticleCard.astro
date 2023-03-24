@@ -2,13 +2,15 @@
 import FormatDate from "./FormatDate.astro";
 import CategoryBadge from "./CategoryBadge.astro";
 
-const { href, title, tags, date, sticky = false } = Astro.props;
+const { href, title, tags, date, sticky = false, wpId } = Astro.props;
 ---
 
 <div
   class={`card card-bordered bg-base-100 text-base-content ${
     sticky && "md:col-span-1 col-span-2"
   }`}
+  data-wp-id={wpId}
+  data-wp-href={wpId == null ? null : href}
 >
   <div class="card-body">
     <h2 class="card-title">
