@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import favicon from "../../public/favicon.png";
 
 export interface Props {
   title: string;
@@ -12,10 +13,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 ---
 
+<!-- Preload -->
+<link rel="preload" href="/favicon.png" as="image" />
+<link rel="preload" href="/assets/back.webp" as="image" />
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="preload" href="/favicon.png" as="image" />
+<link rel="icon" type="image/png" href={favicon} />
 <link rel="sitemap" href="/sitemap-index.xml">
 <meta name="generator" content={Astro.generator} />
 
