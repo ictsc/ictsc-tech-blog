@@ -1,0 +1,45 @@
+---
+import { getCollection, CollectionEntry } from "astro:content";
+
+import CollectionLayout from "../../../layout/CollectionLayout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allPosts = await getCollection("blog");
+
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+
+  return uniqueTags.map( (t: string)=> {
+    const filteredPosts = allPosts.filter((post: any) => post.data.tags.includes(t))
+      .filter((post: any) => !post.data.draft)
+      .sort((a: any, b: any) => (a.data.pubDate < b.data.pubDate ? 1 : -1));
+    return paginate(filteredPosts, { params: { t}, pageSize: 2 });
+  });
+
+}
+
+const params = Astro.params;
+const { posts } = Astro.props;
+---
+
+<CollectionLayout meta="カテゴリ" title={params}>
+  <div class="text-sm breadcrumbs" slot="breadCrumbs">
+    <ul class="py-2">
+      <li><a href="/">Home</a></li>
+      <li><a href="/category">Category</a></li>
+      <li><a href={`/category/${params}/`}>{params}</a></li>
+    </ul>
+  </div>
+  {
+    posts.data.map((post: any) => (
+      <ArticleCard
+        href={`/${post.slug}/`}
+        title={post.data.title}
+        tags={post.data.tags}
+        date={post.data.pubDate}
+      />
+    ))
+  }
+</CollectionLayout>
