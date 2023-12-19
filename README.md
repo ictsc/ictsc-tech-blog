@@ -1,47 +1,83 @@
-# Astro Starter Kit: Minimal
+# ictsc-tech-blog
+
+ICTSC Tech Blog (https://blog.icttoracon.net/)
+
+
+## Requirements
+
+* Node.js v18 or higher
+
+## Install
 
 ```
-npm create astro@latest -- --template minimal
+npm i
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Usage
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+command to add articles interactively.
 
-## 🚀 Project Structure
+### 1. Add article
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+$ npm run blog:generate 
+
+> astro-ictsc@0.0.1 generate
+> node cmd/generate-content.cjs
+
+Folder Name: ictsc2023
+File Name: abc
+Title: はじめての記事
+Description: 今回初めての記事を書きました
+Tags (comma-separated): first-post, test
+Publish Date (YYYY-MM-DDTHH:MM:SS or leave empty for current time): <空で エンター>
+Sticky? (yes/no): no
+File created at: src/content/blog/ictsc2023/abc.md
+
+$ cat src/content/blog/ictsc2023/abc.md
+---
+title: "はじめての記事"
+description: "今回初めての記事を書きました"
+tags: ["first-post", "test"]
+pubDate: 2023-12-19T12:56:36.988Z
+slug: "2023/12/19/はじめての記事"
+draft: false
+renderer: "md"
+sticky: false
+---
+
+## はじめての記事
+```
+
+### 2. Preview
+
+以下のように実行し http://localhost:4321 にアクセスする
+
+```bash
+$ npm run build && npm run preview
+
+> astro-ictsc@0.0.1 build
+> astro build
+
+~~skip~~
+
+22:02:34 [build] 407 page(s) built in 6.29s
+22:02:34 [build] Complete!
+
+> astro-ictsc@0.0.1 preview
+> astro preview
+
+
+ astro  v4.0.6 ready in 5 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+```
+
+## Development
+
+### Start Astro development mode
 
 ```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+npm run dev
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

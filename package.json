@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "blog:generate": "node cmd/blog-generate.cjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.0.1",
