@@ -1,22 +1,12 @@
 ---
-code: ulg
-title: なんか通信できない(´・ω・｀)
-point: 50
-solvedCriterion: 50
-type: normal
-connectInfo:
-  - hostname: department-A
-    command: ssh user@192.168.255.50 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
-  - hostname: router
-    command: ssh user@192.168.255.51 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
+title: "ICTSC2023 予選 問題解説: ULG"
+description: "ICTSC2023 本戦 問題解説: なんか通信できない(´・ω・｀)"
+tags: [ICTSC2023,ネットワーク関連,問題解説]
+pubDate: 2023-12-22T00:00:00
+slug: "2023/12/22/ICTSC2023 予選 問題解説: なんか通信できない(´・ω・｀)"
+draft: false
+renderer: "md"
+sticky: false
 ---
 
 ## 概要

@@ -1,16 +1,12 @@
 ---
-code: dif
-title: 経路がおかしい
-point: 50
-solvedCriterion: 50
-type: normal
-connectInfo:
-  - hostname: vyos02
-    command: ssh user@192.168.255.62 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
+title: "ICTSC2023 予選 問題解説: DIF"
+description: "ICTSC2023 本戦 問題解説: 経路がおかしい"
+tags: [ICTSC2023,ネットワーク関連,問題解説]
+pubDate: 2023-12-22T00:00:00
+slug: "2023/12/22/ICTSC2023 予選 問題解説: 経路がおかしい"
+draft: false
+renderer: "md"
+sticky: false
 ---
 
 ## 概要

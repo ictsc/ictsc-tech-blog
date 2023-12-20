@@ -1,16 +1,12 @@
 ---
-code: nao
-title: 絵文字が入力できない！😭
-point: 50
-solvedCriterion: 50
-type: normal
-connectInfo:
-  - hostname: redmine
-    command: ssh user@192.168.255.21 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
+title: "ICTSC2023 予選 問題解説: NAO"
+description: "ICTSC2023 本戦 問題解説: 絵文字が入力できない！😭"
+tags: [ICTSC2023,サーバー関連,問題解説]
+pubDate: 2023-12-22T00:00:00
+slug: "2023/12/22/ICTSC2023 予選 問題解説: 絵文字が入力できない！😭"
+draft: false
+renderer: "md"
+sticky: false
 ---
 
 ## 概要
@@ -47,6 +43,7 @@ wiki に絵文字🍣を書き込んで保存することが出来る。
 ## 参考情報
 
 redmine を手元のPCで見る方法
+
 * redmine ログイン情報
   * ユーザ名: admin
   * パスワード: `J6vs0N2H21Y07oV5qUn57w`

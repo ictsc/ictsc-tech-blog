@@ -1,22 +1,12 @@
 ---
-code: aoi
-title: BGPがEstablishedにならない
-point: 50
-solvedCriterion: 50
-type: normal
-connectInfo:
-  - hostname: vyos00
-    command: ssh user@192.168.255.90 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
-  - hostname: vyos01
-    command: ssh user@192.168.255.91 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
+title: "ICTSC2023 予選 問題解説: AOI"
+description: "ICTSC2023 本戦 問題解説: BGPがEstablishedにならない"
+tags: [ICTSC2023,ネットワーク関連,問題解説]
+pubDate: 2023-12-22T00:00:00
+slug: "2023/12/22/ICTSC2023 予選 問題解説: BGPがEstablishedにならない"
+draft: false
+renderer: "md"
+sticky: false
 ---
 
 ## 概要
@@ -42,7 +32,7 @@ vyos00のeBGPに使用する情報は以下となっています
 
 ## 前提条件
 
-* 特になし
+- 特になし
 
 ## 制約
 

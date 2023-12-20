@@ -1,37 +1,12 @@
 ---
-code: dra
-title: 半径と直径
-point: 50
-solvedCriterion: 50
-type: normal
-connectInfo:
-  - hostname: client
-    command: ssh user@192.168.255.81 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
-
-  - hostname: trans
-    command: ssh user@192.168.255.82 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
-
-  - hostname: middle
-    command: ssh user@192.168.255.83 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
-
-  - hostname: diameter
-    command: ssh user@192.168.255.84 -p 22
-    user: user
-    password: rgv8qbaiTVgg
-    port: 22
-    type: ssh
+title: "ICTSC2023 予選 問題解説: DRA"
+description: "ICTSC2023 本戦 問題解説: 半径と直径"
+tags: [ICTSC2023,サーバー関連,問題解説]
+pubDate: 2023-12-22T00:00:00
+slug: "2023/12/22/ICTSC2023 予選 問題解説: 半径と直径"
+draft: false
+renderer: "md"
+sticky: false
 ---
 
 ## 概要
@@ -56,18 +31,19 @@ connectInfo:
 
 ## 前提条件
 
-* 特になし
+- 特になし
 
 ## 制約
 
-* Middleサーバーに入って書き換えることは禁止とする
-* ネットワークトポロジーの変更などは禁止する
+- Middleサーバーに入って書き換えることは禁止とする
+- ネットワークトポロジーの変更などは禁止する
 
 ## 初期状態
 
 client nodeから以下のものが通らない
-* `wpa_supplicant -c /etc/wpa_supplicant.conf -D wired -i client-hostapd`
-* `ping 192.168.100.102`
+
+- `wpa_supplicant -c /etc/wpa_supplicant.conf -D wired -i client-hostapd`
+- `ping 192.168.100.102`
 
 sshでclient サーバーに接続した後、client node への接続方法は以下のように行う
 `ip netns exec client bash`
@@ -75,11 +51,13 @@ sshでclient サーバーに接続した後、client node への接続方法は�
 `ip netns` をすると `hostapd`, `app`, `client` の3つのノードがある。その中のnetnsのclientが `client node` に該当する。
 
 通らないと記述してあるモノに関しては client サーバーにおいて systemdで管理されており、以下のコマンドで状態を見ることが可能である。このコマンドは client node で制御されているリソースである。
-* `sudo systemctl status wpa_supplicant_ns.service`
-* `sudo systemctl status hostapd_ns.service`
+
+- `sudo systemctl status wpa_supplicant_ns.service`
+- `sudo systemctl status hostapd_ns.service`
 
 ## 終了状態
 
 client nodeから以下のものが通る
-* `wpa_supplicant -c /etc/wpa_supplicant.conf -D wired -i client-hostapd`
-* `ping 192.168.100.102`
+
+- `wpa_supplicant -c /etc/wpa_supplicant.conf -D wired -i client-hostapd`
+- `ping 192.168.100.102`
