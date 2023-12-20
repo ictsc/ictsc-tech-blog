@@ -3,7 +3,7 @@ title: "ICTSC2023 予選 問題解説: ULG"
 description: "ICTSC2023 本戦 問題解説: なんか通信できない(´・ω・｀)"
 tags: [ICTSC2023,ネットワーク関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: なんか通信できない(´・ω・｀)"
+slug: "2023/12/22/ICTSC2023 予選 問題解説: なんか通信できない"
 draft: false
 renderer: "md"
 sticky: false
