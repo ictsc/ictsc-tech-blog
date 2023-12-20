@@ -9,6 +9,8 @@ renderer: "md"
 sticky: false
 ---
 
+# 問題文
+
 ## 概要
 
 あなたはとある会社で勤務している社会人です。
@@ -62,3 +64,5 @@ vyos00のeBGPに使用する情報は以下となっています
   user@vyos00:~$ show ip bgp vrf EBGP-AS65001 neighbors 2.2.2.2 | grep state
     BGP state = Established, up for xx:xx:xx
   ```
+
+# 解説

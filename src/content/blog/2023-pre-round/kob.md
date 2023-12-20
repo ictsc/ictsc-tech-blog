@@ -9,6 +9,8 @@ renderer: "md"
 sticky: false
 ---
 
+# 問題文
+
 ## 概要
 
 Kubernetes 上で Jenkins を動かしたかった A さんは、インターネット上の個人ブログに公開されているマニフェストファイルを利用して Jenkins を動作させようとしました。
@@ -79,3 +81,90 @@ Client Version: v1.28.2
 Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
 Server Version: v1.28.2
 ```
+
+# 解説
+
+## トラブルの原因
+
+この問題の原因は、Jenkins Pod の Java ヒープサイズ設定が Kubernetes のメモリリソース制限と対応していないことにあります。具体的には、Jenkins の Java Virtual Machine (JVM) のヒープメモリ初期設定 (-Xms) が高すぎ、これが Kubernetes の Pod メモリリソース制限を超えているため、Pod が `OOMKilled`（メモリ不足で終了）され頻繁に再起動しています。
+
+### `-Xms` について
+
+`-Xms` は Java Virtual Machine (JVM) のヒープメモリの起動時サイズを指定するオプションです。この値が大きすぎると、Pod が割り当てられたメモリリソースを超過し、Kubernetes によって `OOMKilled` (Out of Memory Killed) される可能性があります。
+
+Pod のリソース制限をもうける前の段階では
+`-Xms` によって指定されたヒープメモリの起動時サイズが Worker インスタンスで利用可能なメモリリソースを超えてしまっていたため過負荷`OOMKilled`となっていました。
+
+### Kubernetes のリソース制限との関係
+
+Kubernetes では、Pod のリソース制限（CPU, メモリ）を `limits` キーワードを使って設定します。この設定は Pod が消費できるリソースの最大値を定義し、これを超えると Kubernetes が Pod を再起動する可能性があります。
+
+Pod のリソース制限をもうけたことによって
+`-Xms` によって指定されたヒープメモリの起動時サイズがPod のリソース制限を超えてしまっていたため`OOMKilled`となっていました。
+
+## 問題の解決方法
+
+解決策としては、Jenkins の JVM ヒープメモリ設定（特に `-Xms`）を Kubernetes のリソース制限に合わせる必要があります。具体的には、`controller.javaOpts` の `-Xms` 値を Kubernetes のリソース制限（この場合、メモリは 700Mi）以下に調整するか、またはこのオプションを完全に取り除くことです。
+
+マニフェストファイルは /home/user/jenkins.yaml に存在するため、これを編集したうえで
+
+```bash
+kubectl apply -f /home/user/jenkins.yaml
+```
+
+することで変更内容が反映されます。
+
+または
+
+```bash
+kubectl edit statefulset jenkins
+```
+
+などのコマンドを用いて直接マニフェストを編集しても更新可能です。
+
+jenkinsはStatefulSetsのため即座に変更は反映されないため、ポッドを削除することによって目的にあったように作成されます。
+
+```bash
+kubectl delete pod jenkins-0
+```
+
+### 問題に気づくための手がかり
+
+```bash
+kubectl get pods -w
+```
+
+すると watch API を用いて継続的に Pod の状態を確認することが出来る。これにより Pod が `OOMKilled` のステータスを経て CrashLoopBackOff になっていることを確認できる。
+`OOMKilled` のステータスからメモリ関連の問題だと気づくことができる。
+
+output 例
+
+```
+$ kubectl get pods -o wide -w
+NAME        READY   STATUS             RESTARTS       AGE    IP              NODE     NOMINATED NODE   READINESS GATES
+jenkins-0   1/2     CrashLoopBackOff   10 (83s ago)   2d1h   172.16.171.80   worker   <none>           <none>
+jenkins-0   1/2     Running            11 (88s ago)   2d1h   172.16.171.80   worker   <none>           <none>
+jenkins-0   1/2     Running            11 (100s ago)   2d1h   172.16.171.80   worker   <none>           <none>
+jenkins-0   2/2     Running            11 (100s ago)   2d1h   172.16.171.80   worker   <none>           <none>
+jenkins-0   1/2     OOMKilled          11 (102s ago)   2d1h   172.16.171.80   worker   <none>           <none>
+jenkins-0   1/2     CrashLoopBackOff   11 (2s ago)     2d1h   172.16.171.80   worker   <none>           <none>
+```
+
+### 解決後の状態確認
+
+変更を適用した後、以下のコマンドを実行して Jenkins Pod の状態を確認します。
+
+```bash
+kubectl get pods -o wide
+```
+
+このコマンドは、Pod の状態（例：`Running`, `OOMKilled`）や再起動回数を表示します。変更が正しく適用されていれば、Pod は `Running` 状態に安定し、頻繁な再起動は発生しなくなります。
+
+## マニフェストファイルを使いまわす時は注意しましょう
+
+この問題のように、インターネットで公開されているようなマニフェストファイルの内容を理解せずに利用すると、動作環境依存の設定が原因で動作しないことがままあります。またこの問題とは関係ありませんが、疑わしい image を利用していたり理由なく Pod に特権アクセスを許可しているなど、セキュリティのリスクも存在します。
+インターネットに公開されているマニフェストファイルを利用する場合は、きちんと内容を理解してから利用するようにしましょう。
+
+## 採点基準
+
+問題が解決され、Jenkins がブラウザから確認できること: 100%

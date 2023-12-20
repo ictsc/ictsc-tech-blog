@@ -9,6 +9,8 @@ renderer: "md"
 sticky: false
 ---
 
+# 問題文
+
 ## 概要
 
 とある企業ではネットワーク機能を含めlinuxで構築しており、あなたは`department-A`、及び`router`の管理者である。
@@ -86,3 +88,15 @@ sticky: false
     5 packets transmitted, 5 received, 0% packet loss, time XXXXms
     rtt min/avg/max/mdev = X.XXX/X.XXX/X.XXX/X.XXX ms
     ```
+
+# 解説
+
+NAPT routerの役割をしていたrouter（linux）が再起動して、NAPTの設定をしていたfirewalldが吹き飛んで疎通不可になったトラブル
+
+## 採点基準
+
+* ping送信用のdepartment-Aから宛先のdepartment-Bにpingが飛ぶようになれば60%（基準点）
+* 再起動後にも設定が保持できており、 department-A から department-B へping通信可能なら100%
+  * 想定: firewall-cmdの--permanent など
+
+なお、iptablesなどfirewalld以外の回答も許容し、pingによる結果のみで採点する。
