@@ -21,7 +21,7 @@ sticky: false
 
 ## ネットワーク図
 
-![](../../../../public/images/2023-pre-round/ulg01.jpeg)
+![](/images/2023-pre-round/ulg01.jpeg)
 
 ## 前提条件
 
