@@ -228,3 +228,6 @@ Displayed neighbors 1
 Total number of neighbors 1
 user@vyos00:~$
 ```
+
+## 採点基準
+* 終了状態と同一の状態になっていること：50点
