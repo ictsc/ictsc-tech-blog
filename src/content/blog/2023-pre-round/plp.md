@@ -1,9 +1,9 @@
 ---
-title: "ICTSC2023 予選 問題解説: PLP"
-description: "ICTSC2023 本戦 問題解説: ファイルが送れない"
+title: "ICTSC2023 予選 問題解説: [PLP] ファイルが送れない"
+description: "ICTSC2023 予選 問題解説: ファイルが送れない"
 tags: [ICTSC2023,サーバー関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: ファイルが送れない"
+slug: "2023/12/22/ictsc2023pr/plp"
 draft: false
 renderer: "md"
 sticky: false

@@ -1,13 +1,15 @@
 ---
-title: "ICTSC2023 予選 問題解説: DIF"
-description: "ICTSC2023 本戦 問題解説: 経路がおかしい"
+title: "ICTSC2023 予選 問題解説: [DIF] 経路がおかしい"
+description: "ICTSC2023 予選 問題解説: 経路がおかしい"
 tags: [ICTSC2023,ネットワーク関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: 経路がおかしい"
+slug: "2023/12/22/ictsc2023pr/dif"
 draft: false
 renderer: "md"
 sticky: false
 ---
+
+ICTSC2023 予選 問題解説: 経路がおかしい
 
 # 問題文
 

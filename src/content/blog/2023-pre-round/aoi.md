@@ -1,13 +1,15 @@
 ---
-title: "ICTSC2023 予選 問題解説: AOI"
-description: "ICTSC2023 本戦 問題解説: BGPがEstablishedにならない"
+title: "ICTSC2023 予選 問題解説: [AOI] BGPがEstablishedにならない"
+description: "ICTSC2023 予選 問題解説: BGPがEstablishedにならない"
 tags: [ICTSC2023,ネットワーク関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: BGPがEstablishedにならない"
+slug: "2023/12/22/ictsc2023pr/aoi"
 draft: false
 renderer: "md"
 sticky: false
 ---
+
+ICTSC2023 予選 問題解説: BGPがEstablishedにならない
 
 # 問題文
 

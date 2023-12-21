@@ -1,13 +1,15 @@
 ---
-title: "ICTSC2023 予選 問題解説: DRA"
-description: "ICTSC2023 本戦 問題解説: 半径と直径"
+title: "ICTSC2023 予選 問題解説: [DRA] 半径と直径"
+description: "ICTSC2023 予選 問題解説: 半径と直径"
 tags: [ICTSC2023,サーバー関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: 半径と直径"
+slug: "2023/12/22/ictsc2023pr/dra"
 draft: false
 renderer: "md"
 sticky: false
 ---
+
+ICTSC2023 予選 問題解説: 半径と直径
 
 # 問題文
 

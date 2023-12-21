@@ -1,13 +1,15 @@
 ---
-title: "ICTSC2023 予選 問題解説: KOB"
-description: "ICTSC2023 本戦 問題解説: Jenkins が動かない！"
+title: "ICTSC2023 予選 問題解説: [KOB] Jenkins が動かない！"
+description: "ICTSC2023 予選 問題解説: Jenkins が動かない！"
 tags: [ICTSC2023,サーバー関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: Jenkins が動かない！"
+slug: "2023/12/22/ictsc2023pr/kob"
 draft: false
 renderer: "md"
 sticky: false
 ---
+
+ICTSC2023 予選 問題解説: Jenkins が動かない！
 
 # 問題文
 

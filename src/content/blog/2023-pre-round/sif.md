@@ -1,9 +1,9 @@
 ---
-title: "ICTSC2023 予選 問題解説: SIF"
-description: "ICTSC2023 本戦 問題解説: ログが転送できない！"
+title: "ICTSC2023 予選 問題解説: [SIF] ログが転送できない！"
+description: "ICTSC2023 予選 問題解説: ログが転送できない！"
 tags: [ICTSC2023,サーバー関連,問題解説]
 pubDate: 2023-12-22T00:00:00
-slug: "2023/12/22/ICTSC2023 予選 問題解説: ログが転送できない！"
+slug: "2023/12/22/ictsc2023pr/sif"
 draft: false
 renderer: "md"
 sticky: false
