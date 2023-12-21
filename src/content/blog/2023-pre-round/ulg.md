@@ -21,7 +21,7 @@ sticky: false
 
 ## ネットワーク図
 
-![](https://i.imgur.com/qpgPOUy.jpg)
+![](../../../../public/images/2023-pre-round/ulg01.jpeg)
 
 ## 前提条件
 

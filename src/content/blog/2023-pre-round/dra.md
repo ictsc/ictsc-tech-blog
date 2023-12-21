@@ -31,7 +31,7 @@ ICTSC2023 予選 問題解説: 半径と直径
 
 ## ネットワーク図
 
-![](https://i.imgur.com/38TSp7X.jpg)
+![](/images/2023-pre-round/dra01.jpeg)
 
 ## 前提条件
 

@@ -21,7 +21,7 @@ sticky: false
 
 以下は、上司がくれた今回のログ収集システムの概要図です。
 
-![overview](https://i.imgur.com/2CBU5aU.png)
+![overview](/images/2023-pre-round/sif01.png)
 
 **Grafana**
 
@@ -156,7 +156,7 @@ rsyslogでは、ログを出力するフォーマットを次のように指定�
 
 最終的なログ収集システムの構成は次のようになります。この構成はpromtailのドキュメント内でも推奨構成とされている構成になります[^3]。
 
-![ICTSC2023 - SIF-解説.webp](/attachment/652a4b69a6fb4a05bfe4edb9)
+![](/images/2023-pre-round/sif01.png)
 
 [^1]: RFC 3164: <https://datatracker.ietf.org/doc/html/rfc3164>
 [^2]: RFC 5424: <https://datatracker.ietf.org/doc/html/rfc5424>

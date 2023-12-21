@@ -23,7 +23,7 @@ VyOS01とVyOS03はBGPピアとして接続され、経路制御を行ってい�
 
 ## ネットワーク図
 
-![](https://i.imgur.com/MvrSLOR.jpg)
+![](/images/2023-pre-round/dif01.jpeg)
 
 ## 前提条件
 

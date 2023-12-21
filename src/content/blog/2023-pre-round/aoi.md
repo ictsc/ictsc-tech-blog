@@ -32,7 +32,7 @@ vyos00のeBGPに使用する情報は以下となっています
 
 ## ネットワーク図
 
-![](https://i.imgur.com/N6rpmFf.jpg)
+![](/images/2023-pre-round/aoi01.jpeg)
 
 ## 前提条件
 
@@ -77,7 +77,7 @@ vyos00のeBGPに使用する情報は以下となっています
 - VRF（EBGP-AS65001） に eBGP で使用する interface を所属させていないこと
 
 本問題のネットワーク図は以下となります。
-![vrf_network.jpg](/attachment/6550b5f8a6fb4a05bff999d3)
+![vrf_network.jpg](/images/2023-pre-round/aoi01.jpeg)
 初期設定だと以下のように vyos00 で VRF の経路情報に何も表示されていない状態になります。
 
 ```
