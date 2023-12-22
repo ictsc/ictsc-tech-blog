@@ -143,7 +143,7 @@ Syncing disks.
 `sudo rsync -a storage2/ storage/`
 8. この場合/etc/fstabの書き換えはない
 
-## 別回
+## 別解
 1. sudo growpart /dev/vdb1
 2. sudo resize2fs /dev/vdb1
 
