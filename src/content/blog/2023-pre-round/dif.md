@@ -122,6 +122,10 @@ C>* 192.168.255.0/24 is directly connected, eth0, 00:18:45
 BFDパケットの送信間隔は「自身の最小送信間隔」と「対向の最小受信間隔」と比較して値の大きい方が適用されます。  
 そのため、最低限BFDパケットの「受信間隔」と「エコー送信間隔」の数値を大きくすることでBGPセッションが開始されます。
 
+```
+configure
+```
+
 ```diff
 - set protocols bfd peer 10.10.1.1 interval echo-interval 10
 set protocols bfd peer 10.10.1.1 interval multiplier 2
@@ -169,6 +173,7 @@ vyosのLOCAL_PREFのデフォルト値は100であり値が大きい方が優先
 なので以下のコマンドで200に設定します。
 
 ```
+configure
 set policy prefix-list 172-16-1 rule 1 action permit
 set policy prefix-list 172-16-1 rule 1 prefix 172.16.1.0/24
 set policy route-map vyos01-localpref rule 1 action permit 
@@ -232,14 +237,14 @@ C>* 10.10.1.0/24 is directly connected, eth1, 00:28:01
 C>* 10.10.3.0/24 is directly connected, eth2, 00:28:02
 B>* 172.16.1.0/24 [20/0] via 10.10.1.1, eth1, weight 1, 00:00:56
 C>* 172.16.2.0/24 is directly connected, dum0, 00:28:02
-B>* 172.16.3.0/24 [20/0] via 10.10.1.1, eth1, weight 1, 00:00:56
+B>* 172.16.3.0/24 [20/0] via 10.10.3.3, eth2, weight 1, 00:00:56
 S>* 192.168.100.0/24 [1/0] via 192.168.255.254, eth0, weight 1, 00:27:59
 C>* 192.168.255.0/24 is directly connected, eth0, 00:28:02
 ```
 
 ## 採点基準
 
-- BGPを用いない経路制御 or BFDの無効化：０点
+- BGPを用いない経路制御 or BFDの無効化：減点
 - BFDによるBGPセッションクローズの解決：+10
 - `172.16.1.0/24`のネクストホップが`10.10.1.1`である：+15
 - `172.16.3.0/24`のネクストホップが`10.10.3.3`である：+20
