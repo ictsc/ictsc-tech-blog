@@ -102,7 +102,7 @@ cd /opt/redmine
 
 実行すると convert_script というファイルが作成されます
 
-<details><summary>convert_scriptの中身</summary>
+↓convert_scriptの中身
 
 ```
 user@redmine:~$ cat convert_script
@@ -216,8 +216,6 @@ alter table `wikis` convert to character set utf8mb4;
 alter table `workflows` ROW_FORMAT=DYNAMIC;
 alter table `workflows` convert to character set utf8mb4;
 ```
-
-</details>
 
 このスクリプトをmysqlに反映するので、
 さっきのスクリプトの最後に追加しておきます。
