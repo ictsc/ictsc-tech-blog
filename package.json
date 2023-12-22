@@ -17,7 +17,7 @@
     "@astrojs/tailwind": "^5.0.3",
     "astro": "^4.0.6",
     "daisyui": "^4.4.20",
-    "tailwindcss": "^3.2.7",
+    "tailwindcss": "^3.3.5",
     "zenn-content-css": "^0.1.150",
     "zenn-markdown-html": "^0.1.150"
   },
