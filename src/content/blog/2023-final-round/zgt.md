@@ -1,6 +1,6 @@
 ---
-title: "ICTSC2023 本戦 問題解説: [ZGT] さよならリモートワーク"
-description: "ICTSC2023 本戦 問題解説: さよならリモートワーク"
+title: "ICTSC2023 本戦 問題解説: [ZGT] だいなみっく・あんしぶる"
+description: "ICTSC2023 本戦 問題解説: だいなみっく・あんしぶる"
 tags: [ICTSC2023, 問題解説, サーバー関連]
 pubDate: 2024-03-24T00:00:00
 slug: "2024/03/24/ictsc2023final/zgt"
