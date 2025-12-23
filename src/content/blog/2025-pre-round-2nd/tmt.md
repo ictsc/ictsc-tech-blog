@@ -1,9 +1,9 @@
 ---
-title: "ICTSC2025 二次予選 問題解説: [KOB] 情シスことはじめ"
+title: "ICTSC2025 二次予選 問題解説: [TMT] 情シスことはじめ"
 description: "ICTSC2025 二次予選 問題解説: 情シスことはじめ"
 tags: [ICTSC2025,問題解説]
-pubDate: 2025-12-28T12:00:00
-slug: "2025/12/28/ictsc2025pr/tmt"
+pubDate: 2025-12-13T12:00:00
+slug: "2025/12/13/ictsc2025pr/tmt"
 draft: false
 renderer: "md"
 sticky: false
