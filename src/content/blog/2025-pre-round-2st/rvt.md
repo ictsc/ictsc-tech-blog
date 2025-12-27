@@ -81,7 +81,7 @@ Aだけじゃダメ。Bだけでもダメ。
 2つ揃って初めて動くんです。
 ```
 ```
-おぼろげながら浮かんできたんです　hello:60,dead:90という数字が
+おぼろげながら浮かんできたんです　Hello:60,Dead:90という数字が
 ```
 
 ---
@@ -89,47 +89,29 @@ Aだけじゃダメ。Bだけでもダメ。
 ### 解説
 #### 解答解説 & 想定解答
 本問題には、
-1. md5認証の設定が漏れている
-2. R3-R1間の{hello/dead}インターバルが間違っている
-3. R3-R2間のMTU値が不一致となっている
+1. R3-R1間の{Hello/Dead}インターバルが間違っている
+2. R3-R2間のMTU値が不一致となっている
+3. md5認証の設定が漏れている
+の、３つの問題がありました。
 
-３つの問題がありました。
-1. md5認証の設定が漏れている
+ 1. R3-R1間の{Hello/Dead}インターバルが間違っている
 
-    このOSPFには、``Area, Authentication Type: MD5 (2)``(パケットキャプチャより)とmd5による認証がかかっていました。
+    OSPFのネゴシエート中に、HelloインターバルとDeadインターバルの確認が行われます。
+    各RTは、この２つの値があっているかを事前に確認するため、デフォルトの値(Hello:10/Dead:40)から変更されている場合は、明示的に各値を入力する必要があります。
 
-    そのため、各IFにmd5の設定を行う必要があります。
-
-    md5 keyは、noteのパスワードは2つある。～に書いてあった、パスワード1/パスワード2を利用します。
-
-    想定している解答手順は、下記の 2. {hello/dead}インターバルが間違っているや 3. R3-R2間のMTU値が不一致となっているを解いた後に、本問題に着手すると思っています。
-
-
-    - 想定解答
-        ```
-        set protocols ospf area 0 authentication 'md5'
-        set protocols ospf interface eth1 authentication md5 key-id 1 md5-key 'g9WMnex4'
-        set protocols ospf interface eth2 authentication md5 key-id 1 md5-key 'sS6uZbik'
-        ```
-
-2. R3-R1間の{hello/dead}インターバルが間違っている
-
-    OSPFのネゴシエート中に、HelloインターバルとDeadインターバルを確認します。
-
-    そのため、デフォルトの値(hello:10/Dead:40)から変更する場合は、明示的に値を入力する必要があります。
-
-    想定では、tcpdumpでのパケットキャプチャによるHelloパケットから、noteのおぼろげながら～から変更後の値を取得するのいずれかで解答ができると思っていました。
+    想定している解き方は、tcpdumpでのパケットキャプチャによるHelloパケットからHello/Deadの不一致について確認するか、noteのおぼろげながら～から変更されていることを想定するで解いていたかとも思います。
 
     - 想定解答
         ```
         set protocols ospf interface eth1 dead-interval '90'
         set protocols ospf interface eth1 hello-interval '60'
         ```
-3. R3-R2間のMTU値が不一致となっている
 
-    OSPFでは、上記の{hello/dead}インターバルと合わせて、IFのMTU値も一致させる必要があります。
+2. R3-R2間のMTU値が不一致となっている
 
-    今回のように、中間にMTU:1500から減る要因がある場合は、MTU値を変更する必要があります。
+    OSPFでは、上記の{Hello/Dead}インターバルと合わせて、IFのMTU値も一致させる必要があります。
+
+    今回のように、RT間にMTU:1500から減る要因がある場合は、MTU値を変更する必要があります。
 
     今回の問題は、問題文には変更後のMTU値については載せませんでした。
 
@@ -141,5 +123,19 @@ Aだけじゃダメ。Bだけでもダメ。
         ```
         set interfaces ethernet eth1 mtu '1410'
         ```
+3. md5認証の設定が漏れている
 
-#### その他
+    最後にOSPFのネゴシエートが進まない理由に``Area, Authentication Type: MD5 (2)``(パケットキャプチャより)とmd5による認証がありました。
+
+    今回は各IFごとに認証をするのではなくAreaに対してmd5の認証を行っていたため、設定を行う必要がありますが、初期環境ではその設定がされていませんでした。
+
+    md5 keyは、noteのパスワードは2つある。～に書いてあった、パスワード1/パスワード2を利用します。
+
+    想定している解き方は、上記の 1. {Hello/Dead}インターバルが間違っているや 2. R3-R2間のMTU値が不一致となっているを解いた後に、ネゴシエートが進まない理由を調べる過程でパケットキャプチャを行った結果、このトラブルに突き当たると想定しています。
+
+    - 想定解答
+        ```
+        set protocols ospf area 0 authentication 'md5'
+        set protocols ospf interface eth1 authentication md5 key-id 1 md5-key 'g9WMnex4'
+        set protocols ospf interface eth2 authentication md5 key-id 1 md5-key 'sS6uZbik'
+        ```
