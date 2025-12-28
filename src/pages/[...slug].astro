@@ -29,7 +29,11 @@ const post = Astro.props;
 const { title, description, tags, pubDate, renderer } = post.data;
 const slug = post.slug;
 
-const body = renderer == "html" ? post.body : markdownToHtml(post.body);
+const body =
+  renderer == "html"
+    ? post.body
+    : markdownToHtml(post.body, { embedOrigin: "https://embed.zenn.studio" });
+
 ---
 
 <BaseLayout title={`${title} | ${SITE_TITLE}`} description={description}>
