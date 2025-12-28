@@ -27,7 +27,7 @@ sticky: false
   - router02から送信されるメッセージは/var/log/rsyslog/router02/router02.logに書き込まれる想定となっている。
 - 大まかな構成・配線は下図の通りとなる。
 
-![](/images/2025-pre-round-2nd/slg.png)
+![](/images/2025-pre-round-2nd/slg.jpg)
 
 ## 制約条件
 
