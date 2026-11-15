@@ -22,7 +22,7 @@
     "zenn-markdown-html": "^0.1.150"
   },
   "devDependencies": {
-    "prettier": "^2.8.4",
+    "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.8.0"
   }
 }
